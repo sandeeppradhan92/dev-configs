@@ -1,6 +1,22 @@
 # zshconfig
 configure zsh shell using .zshrc file
 
+## Oh My Zsh installation
+Oh My Zsh is an open source, community-driven framework for managing your zsh configuration.
+### Basic Installation
+Oh My Zsh is installed by running one of the following commands in your terminal. You can install this via the command-line with either curl or wget, whichever is installed on your machine.
+. curl or wget should be installed
+. git should be installed (recommended v2.4.11 or higher)
+
+via curl
+```$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
+via wget
+```$ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
+
+### Uninstalling Oh My Zsh
+Oh My Zsh isn't for everyone. We'll miss you, but we want to make this an easy breakup.
+If you want to uninstall oh-my-zsh, just run uninstall_oh_my_zsh from the command-line. It will remove itself and revert your previous bash or zsh configuration.
+
 ## Theme installation
 
 ### 1. powerlevel10k
