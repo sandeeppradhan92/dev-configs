@@ -5,8 +5,8 @@ configure zsh shell using .zshrc file
 Oh My Zsh is an open source, community-driven framework for managing your zsh configuration.
 ### Basic Installation
 Oh My Zsh is installed by running one of the following commands in your terminal. You can install this via the command-line with either curl or wget, whichever is installed on your machine.
-..* curl or wget should be installed
-..* git should be installed (recommended v2.4.11 or higher)
+* curl or wget should be installed
+* git should be installed (recommended v2.4.11 or higher)
 
 via curl
 ```$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
