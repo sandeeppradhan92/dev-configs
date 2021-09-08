@@ -1,5 +1,8 @@
+pip3 install ptpython
 pip3 install argcomplete
 activate-global-python-argcomplete
+
+cp .pythonstartup ${HOME}/.pythonstartup
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   brew install --cask snowflake-snowsql
