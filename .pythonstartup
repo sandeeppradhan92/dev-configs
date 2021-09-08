@@ -1,7 +1,17 @@
 import sys
+
+def install(package):
+    import pip
+    if hasattr(pip, 'main'):
+        pip.main(['install', package])
+    else:
+        pip._internal.main(['install', package])
+    from ptpython.repl import embed
+
 try:
     from ptpython.repl import embed
 except ImportError:
+    install("ptpython")
     print("ptpython is not available: falling back to standard prompt")
 else:
     sys.exit(embed(globals(), locals()))
