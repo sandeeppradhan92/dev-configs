@@ -8,17 +8,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sandeeppradhan/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+if [ -f "${ZSH}/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
+  source ${ZSH}/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+elif [ -f "${ZSH}/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
+  source ${ZSH}/themes/powerlevel10k/powerlevel10k.zsh-theme
+elif [ -f "${HOME}/powerlevel10k/powerlevel10k.zsh-theme" ]; then
+  source ${HOME}/powerlevel10k/powerlevel10k.zsh-theme
+else
+  echo "powerlevel10k folder not found"
+fi
 
 
 # Set list of themes to pick from when loading at random
@@ -88,7 +101,6 @@ plugins=(
     history
     node
     npm
-    npx
     pip
     pipenv
     python
@@ -123,18 +135,19 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="source ~/.zshrc"
+alias ohmyzsh="source ~/.oh-my-zsh"
 
-source ~/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source ${HOME}/.bash_aliases
+fi
 
 # Configuration for kubernetes completion
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 
 # For airflow
 autoload bashcompinit
@@ -149,9 +162,9 @@ export PYTHONSTARTUP=${HOME}/.pythonstartup
 ###################################################### Linux specific configuration ######################################################
 ##########################################################################################################################################
 if [[ $OSTYPE == 'darwin'* ]]; then
-    echo 'macOS'
+    echo 'macOS' >> /dev/null
 else
-    PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
+    export PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
 fi
 #export PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
 
@@ -174,7 +187,9 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 
     # The next line enables shell command completion for gcloud.
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc'; fi
-
 fi
 
 ##########################################################################################################################################
+
+
+echo 'Plugin load complete'
