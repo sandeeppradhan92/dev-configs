@@ -1,0 +1,78 @@
+[connections.dev]
+accountname =                                   # Account identifier to connect to Snowflake.
+username =                                      # User name in the account. Optional.
+password =                                      # User password. Optional.
+dbname =                                        # Default database. Optional.
+schemaname =                                    # Default schema. Optional.
+warehousename =                                 # Default warehouse. Optional.
+#rolename = <string>                            # Default role. Optional.
+#authenticator = <string>                       # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+[connections.stg]
+accountname =                                   # Account identifier to connect to Snowflake.
+username =                                      # User name in the account. Optional.
+password =                                      # User password. Optional.
+dbname =                                        # Default database. Optional.
+schemaname =                                    # Default schema. Optional.
+warehousename =                                 # Default warehouse. Optional.
+#rolename = <string>                            # Default role. Optional.
+#authenticator = <string>                       # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+[connections.prod]
+accountname =                                   # Account identifier to connect to Snowflake.
+username =                                      # User name in the account. Optional.
+password =                                      # User password. Optional.
+dbname =                                        # Default database. Optional.
+schemaname =                                    # Default schema. Optional.
+warehousename =                                 # Default warehouse. Optional.
+#rolename = <string>                            # Default role. Optional.
+#authenticator = <string>                       # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+[options]
+auto_completion            = True               #  Displays auto-completion suggestions for commands and Snowflake objects            |
+client_session_keep_alive  = True               #  Keeps the session active indefinitely, even if there is no activity from the user. |
+echo                       = True               #  Outputs the SQL command to the terminal when it is executed                        |
+editor                     = vim                #  Changes the editor to use for the !edit command                                    |
+empty_for_null_in_tsv      = False              #  Outputs an empty string for NULL values in TSV format                              |
+environment_variables      = ['PATH']           #  Specifies the environment variables that can be referenced as SnowSQL variables.   |
+                                                #  The variable names should be comma separated.                                      |
+execution_only             = False              #  Executes queries only                                                              |
+exit_on_error              = False              #  Quits when SnowSQL encounters an error                                             |
+fix_parameter_precedence   = True               #  Controls the precedence of the environment variable and the config file entries    |
+                                                #  for password, proxy password, and private key phrase.                              |
+force_put_overwrite        = False              #  Force PUT command to stage data files without checking whether already exists      |
+friendly                   = True               #  Shows the splash text and goodbye messages                                         |
+header                     = True               #  Outputs the header in query results                                                |
+insecure_mode              = False              #  Turns off OCSP certificate checks                                                  |
+key_bindings               = vi                 #  Changes keybindings for navigating the prompt to emacs or vi                       |
+log_bootstrap_file         = ~/.snowsql/bootlog #  SnowSQL bootstrap log file location                                                |
+log_file                   = ~/.snowsql/log     #  SnowSQL main log file location                                                     |
+log_level                  = CRITICAL           #  Changes the log level (critical, debug, info, error, warning)                      |
+login_timeout              = 120                #  Login timeout in seconds.                                                          |
+noup                       = False              #  Turns off auto upgrading Snowsql                                                   |
+output_file                = None               #  Writes output to the specified file in addition to the terminal                    |
+output_format              = psql               #  Sets the output format for query results.                                          |
+                                                #  csv, expanded, fancy_grid, grid, html, json, latex, latex_booktabs, mediawiki,     |
+                                                #  orgtbl, pipe, plain, psql, rst, simple, tsv                                        |
+                                                # R ecommended values for tabular results: psql , grid, or fancy_grid                 |
+paging                     = False              #  Enables paging to pause output per screen height.                                  |
+progress_bar               = True               #  Shows progress bar while transferring data.                                        |
+prompt_format              = "\n[#FF0000][user][#FFFFFF]@[#00FF00][database]/[schema] ~ "
+                                                #  Sets the prompt format. Experimental feature, currently not documented             |
+                                                #  Ex : [#FF0000][user]@[#00FF00][database][schema][#0000FF][warehouse]               |
+sfqid                      = True               #  Turns on/off Snowflake query id in the summary.                                    |
+sfqid_in_error             = True               #  Turns on/off Snowflake query id in the error message                               |
+quiet                      = False              #  Hides all output                                                                   |
+remove_comments            = False              #  Removes comments before sending query to Snowflake                                 |
+remove_trailing_semicolons = True               #  Removes trailing semicolons from SQL text before sending queries to Snowflake      |
+results                    = True               #  If set to off, queries will be sent asynchronously, but no results will be fetched.|
+                                                #  Use !queries to check the status.                                                  |
+rowset_size                = 1000               #  Sets the size of rowsets to fetch from the server.                                 |
+                                                #  Set the option low for smooth output, high for fast output.                        |
+stop_on_error              = False              #  Stops all queries yet to run when SnowSQL encounters an error                      |
+syntax_style               = default            #  Sets the colors for the text of SnowSQL.                                           |
+timing                     = True               #  Turns on/off timing for each query                                                 |
+timing_in_output_file      = False              #  Includes timing in the output file.                                                |
+variable_substitution      = False              #  Substitutes variables (starting with '&') with values                              |
+#version                    = 1.1.70             #  SnowSQL version                                                                    |
+wrap                       = True               #
