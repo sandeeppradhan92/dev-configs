@@ -5,7 +5,11 @@ def install(package):
     if hasattr(pip, 'main'):
         pip.main(['install', package])
     else:
-        pip._internal.main(['install', package])
+        try:
+            pip._internal.main(['install', package])
+        except:
+            import os
+            print(os.system("python3 -m pip install ptpython"))
     from ptpython.repl import embed
 
 try:
