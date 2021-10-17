@@ -108,6 +108,9 @@ plugins=(
     tmux
     vscode
     kubectl
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -146,6 +149,7 @@ fi
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
+alias ll='ls -alF'
 
 
 
