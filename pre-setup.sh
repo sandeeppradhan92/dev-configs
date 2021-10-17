@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   brew install kubectl 
@@ -26,8 +26,13 @@ else
   rm -f snowsql-linux_x86_64.bash
 fi
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 pip3 install ptpython
 pip3 install argcomplete
 activate-global-python-argcomplete
 
+cp .zshrc ${HOME}/.zshrc
+cp .p10k.zsh ${HOME}/.p10k.zsh
 cp .pythonstartup ${HOME}/.pythonstartup
