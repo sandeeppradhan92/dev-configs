@@ -44,4 +44,8 @@ cp .zshrc ${HOME}/.zshrc
 cp .p10k.zsh ${HOME}/.p10k.zsh
 cp .pythonstartup ${HOME}/.pythonstartup
 
-source ~/.zshrc
+chmod +x ${HOME}/.zshrc
+chmod +x ${HOME}/.p10k.zsh
+chmod +x ${HOME}/.pythonstartup
+
+echo "Setup Completed"
