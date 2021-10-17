@@ -1,6 +1,10 @@
 # zshconfig
 configure zsh shell using .zshrc file
 
+Install recomended fonts : https://awesomeopensource.com/project/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+
+* without fonts the charactres will displayed as unknown
+
 ## Oh My Zsh installation
 Oh My Zsh is an open source, community-driven framework for managing your zsh configuration.
 ### Basic Installation
