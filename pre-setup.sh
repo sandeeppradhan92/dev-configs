@@ -1,13 +1,16 @@
 #!/bin/bash
 
+SNOW_VER=1.2.17
+
 if [[ $OSTYPE == 'darwin'* ]]; then
   brew install kubectl 
   brew install --cask snowflake-snowsql
 else
   ## install python pip
   sudo apt-get update -y
-  sudo apt install python3-pip
+  sudo apt install python3-pip -y
   ## install zsh
+  rm -rf $HOME/.oh-my-zsh
   sudo apt install zsh -y
   ## Add zsh to /etc/shells:
   command -v zsh | sudo tee -a /etc/shells
@@ -22,7 +25,8 @@ else
   mkdir -p ~/.local/bin/kubectl
   mv ./kubectl ~/.local/bin/kubectl
   ## install snowsql
-  curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.17-linux_x86_64.bash
+  curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-${SNOW_VER}-linux_x86_64.bash
+  mv snowsql-${SNOW_VER}-linux_x86_64.bash snowsql-linux_x86_64.bash
   chmod 777 snowsql-linux_x86_64.bash
   SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-linux_x86_64.bash
   rm -f snowsql-linux_x86_64.bash
