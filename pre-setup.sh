@@ -4,8 +4,10 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   brew install kubectl 
   brew install --cask snowflake-snowsql
 else
-  ## install zsh
+  ## install python pip
   sudo apt-get update -y
+  sudo apt install python3-pip
+  ## install zsh
   sudo apt install zsh -y
   ## Add zsh to /etc/shells:
   command -v zsh | sudo tee -a /etc/shells
@@ -30,10 +32,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-pip3 install ptpython
-pip3 install argcomplete
+python3 -m pip install ptpython
+python3 -m pip install argcomplete
 activate-global-python-argcomplete
 
 cp .zshrc ${HOME}/.zshrc
 cp .p10k.zsh ${HOME}/.p10k.zsh
 cp .pythonstartup ${HOME}/.pythonstartup
+
+source ~/.zshrc
