@@ -164,9 +164,9 @@ export PYTHONSTARTUP=${HOME}/.pythonstartup
 if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'macOS' >> /dev/null
 else
-    export PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
+    export PATH=$HOME/.local/bin/kubectl:$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
 fi
-#export PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
+#export PATH=$HO:ME/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
 
 ##########################################################################################################################################
 
