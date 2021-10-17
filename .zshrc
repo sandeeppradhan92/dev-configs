@@ -33,6 +33,22 @@ else
   echo "powerlevel10k folder not found"
 fi
 
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=255'
+
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=197'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=197'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=197'
+
+# commands like echo git npm 
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=119'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=119'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=119'
+ZSH_HIGHLIGHT_STYLES[command]='fg=119'
+
+ZSH_HIGHLIGHT_STYLES[default]='fg=255'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -109,6 +125,7 @@ plugins=(
     vscode
     kubectl
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
