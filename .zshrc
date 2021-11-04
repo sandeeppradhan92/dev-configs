@@ -168,10 +168,11 @@ alias ll='ls -alF'
 
 
 
-# For airflow
+# For ash completion
 autoload bashcompinit
 bashcompinit
-eval "$(register-python-argcomplete airflow)"
+# For airflow
+eval "$(~/.local/bin/register-python-argcomplete airflow)"
 
 
 # For python startup file
