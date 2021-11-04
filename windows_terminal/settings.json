@@ -1,13 +1,6 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "alwaysShowTabs": false,
-    "copyFormatting": "none",
-    "copyOnSelect": true,
-    "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-    "initialCols": 160,
-    "initialPosition": "1,1150",
-    "initialRows": 46,
-    "keybindings": 
+    "actions": 
     [
         {
             "command": 
@@ -24,15 +17,6 @@
                 "singleLine": true
             },
             "keys": "ctrl+insert"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "vertical",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+r"
         },
         {
             "command": 
@@ -68,10 +52,26 @@
             "keys": "shift+pgdn"
         },
         {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "vertical",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+r"
+        },
+        {
             "command": "scrollUpPage",
             "keys": "shift+pgup"
         }
     ],
+    "alwaysShowTabs": false,
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+    "initialCols": 160,
+    "initialPosition": "1,1150",
+    "initialRows": 46,
     "largePasteWarning": true,
     "multiLinePasteWarning": false,
     "profiles": 
@@ -79,9 +79,12 @@
         "defaults": 
         {
             "closeOnExit": "always",
-            "colorScheme": "Tango Dark",
-            "fontFace": "MesloLGS NF",
-            "fontSize": 8
+            "colorScheme": "One Half Dark",
+            "font": 
+            {
+                "face": "MesloLGS NF",
+                "size": 8
+            }
         },
         "list": 
         [
@@ -104,10 +107,12 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
+                "colorScheme": "One Half Dark",
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
                 "name": "Ubuntu-20.04",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "tabTitle": "Ubuntu-20.04"
             }
         ]
     },
@@ -160,6 +165,29 @@
             "yellow": "#C19C00"
         },
         {
+            "background": "#282A36",
+            "black": "#21222C",
+            "blue": "#BD93F9",
+            "brightBlack": "#6272A4",
+            "brightBlue": "#D6ACFF",
+            "brightCyan": "#A4FFFF",
+            "brightGreen": "#69FF94",
+            "brightPurple": "#FF92DF",
+            "brightRed": "#FF6E6E",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFFA5",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#8BE9FD",
+            "foreground": "#F8F8F2",
+            "green": "#50FA7B",
+            "name": "Dracula",
+            "purple": "#FF79C6",
+            "red": "#FF5555",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F8F8F2",
+            "yellow": "#F1FA8C"
+        },
+        {
             "background": "#282C34",
             "black": "#282C34",
             "blue": "#61AFEF",
@@ -204,6 +232,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#FAFAFA",
             "yellow": "#C18301"
+        },
+        {
+            "background": "#012456",
+            "black": "#000000",
+            "blue": "#0000FF",
+            "brightBlack": "#AAAAAA",
+            "brightBlue": "#44B4CC",
+            "brightCyan": "#19D1D8",
+            "brightGreen": "#81EC0D",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#FFD93D",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#19D1D8",
+            "foreground": "#FFFFFF",
+            "green": "#00FF00",
+            "name": "PowerShellTom",
+            "purple": "#9933CC",
+            "red": "#FF6600",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F5F5F5",
+            "yellow": "#FFD93D"
         },
         {
             "background": "#002B36",
@@ -296,6 +347,98 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#2C001E",
+            "black": "#4E9A06",
+            "blue": "#3465A4",
+            "brightBlack": "#555753",
+            "brightBlue": "#729FCF",
+            "brightCyan": "#34E2E2",
+            "brightGreen": "#8AE234",
+            "brightPurple": "#AD7FA8",
+            "brightRed": "#EF2929",
+            "brightWhite": "#EEEEEE",
+            "brightYellow": "#FCE94F",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#06989A",
+            "foreground": "#EEEEEE",
+            "green": "#300A24",
+            "name": "Ubuntu",
+            "purple": "#75507B",
+            "red": "#CC0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#D3D7CF",
+            "yellow": "#C4A000"
+        },
+        {
+            "background": "#000000",
+            "black": "#878787",
+            "blue": "#44B4CC",
+            "brightBlack": "#555555",
+            "brightBlue": "#0000FF",
+            "brightCyan": "#19D1D8",
+            "brightGreen": "#81EC0D",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#FFD93D",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#19D1D8",
+            "foreground": "#FFFFFF",
+            "green": "#CCFF04",
+            "name": "VibrantInk",
+            "purple": "#9933CC",
+            "red": "#FF6600",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F5F5F5",
+            "yellow": "#FFD93D"
+        },
+        {
+            "background": "#16171D",
+            "black": "#878787",
+            "blue": "#44B4CC",
+            "brightBlack": "#E373C8",
+            "brightBlue": "#0000FF",
+            "brightCyan": "#19D1D8",
+            "brightGreen": "#81EC0D",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#FFD93D",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#19D1D8",
+            "foreground": "#FFFFFF",
+            "green": "#CCFF04",
+            "name": "VibrantTom",
+            "purple": "#9933CC",
+            "red": "#FF6600",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F5F5F5",
+            "yellow": "#FFD93D"
+        },
+        {
+            "background": "#EEEEEE",
+            "black": "#878787",
+            "blue": "#44B4CC",
+            "brightBlack": "#595E68",
+            "brightBlue": "#0000FF",
+            "brightCyan": "#19D1D8",
+            "brightGreen": "#3F953A",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#FF6600",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#44B4CC",
+            "foreground": "#16171D",
+            "green": "#3F953A",
+            "name": "VibrantTomLight",
+            "purple": "#9933CC",
+            "red": "#FF6600",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F5F5F5",
+            "yellow": "#FFD93D"
         },
         {
             "background": "#000000",
