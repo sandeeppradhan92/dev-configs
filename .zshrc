@@ -206,7 +206,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     
     # Set path for google cloud sdk
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/bin' ]; then export PATH=$PATH:/Users/sandeeppradhan/google-cloud-sdk/bin; fi
-    if [ -f '/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin' ]; then export PATH=$PATH:'/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin'; fi
+    if [ -d /Users/sandeeppradhan/Library/Application\ Support/cloud-code/installer/google-cloud-sdk/bin ]; then export PATH=$PATH:'/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin'; fi
     
     if [ -f /usr/local/etc/bash_completion ]; then /bin/bash /usr/local/etc/bash_completion; fi
 else
