@@ -30,6 +30,8 @@ else
   chmod 777 snowsql-linux_x86_64.bash
   SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-linux_x86_64.bash
   rm -f snowsql-linux_x86_64.bash
+  python3 -m pip install argcomplete
+  activate-global-python-argcomplete
 fi
 
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
@@ -43,11 +45,8 @@ rm -rf ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 
-
-
 python3 -m pip install ptpython
-python3 -m pip install argcomplete
-activate-global-python-argcomplete
+
 
 cp .zshrc ${HOME}/.zshrc
 cp .p10k.zsh ${HOME}/.p10k.zsh
