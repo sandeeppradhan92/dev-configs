@@ -160,10 +160,6 @@ if [ -f "${HOME}/.bash_aliases" ]; then
   source ${HOME}/.bash_aliases
 fi
 
-# only works for Mac
-if [ -f /usr/local/etc/bash_completion ]; then
-  . /usr/local/etc/bash_completion
-fi
 
 # Configuration for kubernetes completion
 source <(kubectl completion zsh)
@@ -171,17 +167,6 @@ alias k=kubectl
 complete -F __start_kubectl k
 alias ll='ls -alF'
 
-
-
-# For ash completion
-autoload bashcompinit
-bashcompinit
-# For airflow
-eval "$(~/.local/bin/register-python-argcomplete airflow)"
-
-
-# For python startup file
-export PYTHONSTARTUP=${HOME}/.pythonstartup
 
 ##########################################################################################################################################
 ###################################################### Linux specific configuration ######################################################
@@ -212,12 +197,24 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 
     # The next line enables shell command completion for gcloud.
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc'; fi
+    
+    if [ -f /usr/local/etc/bash_completion ]; then /bin/bash /usr/local/etc/bash_completion; fi
 else
     LS_COLORS='ow=01;36;40'
     export LS_COLORS
 fi
 
 ##########################################################################################################################################
+
+# For bash completion
+autoload bashcompinit
+bashcompinit
+# For airflow
+eval "$(~/.local/bin/register-python-argcomplete airflow)"
+
+
+# For python startup file
+export PYTHONSTARTUP=${HOME}/.pythonstartup
 
 
 echo 'Plugin load complete'
