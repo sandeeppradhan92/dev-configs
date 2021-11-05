@@ -160,6 +160,11 @@ if [ -f "${HOME}/.bash_aliases" ]; then
   source ${HOME}/.bash_aliases
 fi
 
+# only works for Mac
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
+fi
+
 # Configuration for kubernetes completion
 source <(kubectl completion zsh)
 alias k=kubectl
