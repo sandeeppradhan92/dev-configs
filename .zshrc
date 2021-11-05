@@ -204,6 +204,10 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     # The next line enables shell command completion for gcloud.
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc'; fi
     
+    # Set path for google cloud sdk
+    if [ -f '/Users/sandeeppradhan/google-cloud-sdk/bin' ]; then export PATH=$PATH:/Users/sandeeppradhan/google-cloud-sdk/bin; fi
+    if [ -f '/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin' ]; then export PATH=$PATH:'/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin'; fi
+    
     if [ -f /usr/local/etc/bash_completion ]; then /bin/bash /usr/local/etc/bash_completion; fi
 else
     LS_COLORS='ow=01;36;40'
