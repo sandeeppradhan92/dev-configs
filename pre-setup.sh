@@ -3,6 +3,7 @@
 SNOW_VER=1.2.17
 
 if [[ $OSTYPE == 'darwin'* ]]; then
+  brew install bash-completion
   brew install kubectl 
   brew install --cask snowflake-snowsql
 else
