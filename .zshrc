@@ -167,6 +167,10 @@ alias k=kubectl
 complete -F __start_kubectl k
 alias ll='ls -alF'
 
+# For bash completion
+autoload bashcompinit
+bashcompinit
+
 
 ##########################################################################################################################################
 ###################################################### Linux specific configuration ######################################################
@@ -202,15 +206,11 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 else
     LS_COLORS='ow=01;36;40'
     export LS_COLORS
+    # For airflow
+  eval "$(~/.local/bin/register-python-argcomplete airflow)"
 fi
 
 ##########################################################################################################################################
-
-# For bash completion
-autoload bashcompinit
-bashcompinit
-# For airflow
-eval "$(~/.local/bin/register-python-argcomplete airflow)"
 
 
 # For python startup file
