@@ -3,11 +3,8 @@
 SNOW_VER=1.2.17
 
 if [[ $OSTYPE == 'darwin'* ]]; then
-  rm -rf /usr/local/etc/bash_completion.d
-  brew install bash-completion
   brew install kubectl 
   brew install --cask snowflake-snowsql
-  /bin/bash /usr/local/etc/bash_completion
 else
   ## install python pip
   sudo apt-get update -y
