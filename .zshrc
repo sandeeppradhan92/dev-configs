@@ -126,6 +126,7 @@ plugins=(
     kubectl
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -170,6 +171,7 @@ alias ll='ls -alF'
 # For bash completion
 autoload bashcompinit
 bashcompinit
+autoload -U compinit && compinit
 
 
 ##########################################################################################################################################
