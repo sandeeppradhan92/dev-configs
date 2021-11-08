@@ -5,10 +5,12 @@ SNOW_VER=1.2.17
 if [[ $OSTYPE == 'darwin'* ]]; then
   brew install kubectl 
   brew install --cask snowflake-snowsql
+  brew install neofetch
 else
   ## install python pip
   sudo apt-get update -y
   sudo apt install python3-pip -y
+  sudo apt-get install neofetch
   ## install zsh
   rm -rf $HOME/.oh-my-zsh
   sudo apt install zsh -y
