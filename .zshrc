@@ -216,6 +216,10 @@ else
   eval "$(~/.local/bin/register-python-argcomplete airflow)"
 fi
 
+# setup for istioctl
+if·[·-d·$HOME/.istioctl/bin·];·then·export·PATH=$PATH:$HOME/.istioctl/bin;·»
+
+
 ##########################################################################################################################################
 
 
