@@ -47,6 +47,10 @@ rm -rf ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 
+# install istioctl https://istio.io/latest/docs/ops/diagnostic-tools/istioctl/
+curl -sL https://istio.io/downloadIstioctl | sh -
+
+# graphical python terminal
 python3 -m pip install ptpython
 
 
