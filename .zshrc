@@ -166,7 +166,7 @@ fi
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
-alias ll='ls -alF'
+
 
 # For bash completion
 autoload bashcompinit
@@ -231,7 +231,11 @@ export PYTHONSTARTUP=${HOME}/.pythonstartup
 ################################################################ Aliases #################################################################
 ##########################################################################################################################################
 
+alias ll='ls -laF'
+alias lll='ls -lartF'
 alias weather='function _wtr(){curl wttr.in/$1 };_wtr'
+alias back='cd $OLDPWD'
+alias figlet3='figlet -f banner3 -c -w $(tput cols)'
 
 ##########################################################################################################################################
 
