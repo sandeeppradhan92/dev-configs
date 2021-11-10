@@ -5,12 +5,19 @@ SNOW_VER=1.2.17
 if [[ $OSTYPE == 'darwin'* ]]; then
   brew install kubectl 
   brew install --cask snowflake-snowsql
+  # Print system information in cli . Use case [ neofetch ]
   brew install neofetch
+  # for printing banner style output in command line alternative [ banner <text> ] 
+  brew install figlet
 else
-  ## install python pip
+  ####### For now only tested with Ubuntu >= 16.04 and ubutnu in wsl2 #####
+  # install python pip
   sudo apt-get update -y
   sudo apt install python3-pip -y
+  # Print system information in cli . Use case [ neofetch ]
   sudo apt-get install neofetch
+  # for printing banner style output in command line alternative [ banner <text> ] 
+  sudo apt-get install figlet
   ## install zsh
   rm -rf $HOME/.oh-my-zsh
   sudo apt install zsh -y
@@ -32,10 +39,12 @@ else
   chmod 777 snowsql-linux_x86_64.bash
   SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-linux_x86_64.bash
   rm -f snowsql-linux_x86_64.bash
+  # configure python cli argument completion
   python3 -m pip install argcomplete
   activate-global-python-argcomplete
 fi
 
+# Install ZSH specific tools, themes and plugins
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -47,17 +56,20 @@ rm -rf ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 
-# install istioctl https://istio.io/latest/docs/ops/diagnostic-tools/istioctl/
+# install istioctl for istio contril in kubernetes cluster [ https://istio.io/latest/docs/ops/diagnostic-tools/istioctl/ ]
 curl -sL https://istio.io/downloadIstioctl | sh -
 
 # graphical python terminal
 python3 -m pip install ptpython
 
-
+# configure zsh console
 cp .zshrc ${HOME}/.zshrc
 cp .p10k.zsh ${HOME}/.p10k.zsh
+
+# configure python startup file/process. Only executes before python REPL
 cp .pythonstartup ${HOME}/.pythonstartup
 
+# Set prmissions for the files
 chmod +x ${HOME}/.zshrc
 chmod +x ${HOME}/.p10k.zsh
 chmod +x ${HOME}/.pythonstartup
