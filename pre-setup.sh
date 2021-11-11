@@ -55,6 +55,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 rm -rf ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
+# tmux plugin installation
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # install istioctl for istio contril in kubernetes cluster [ https://istio.io/latest/docs/ops/diagnostic-tools/istioctl/ ]
 curl -sL https://istio.io/downloadIstioctl | sh -
@@ -69,9 +71,16 @@ cp .p10k.zsh ${HOME}/.p10k.zsh
 # configure python startup file/process. Only executes before python REPL
 cp .pythonstartup ${HOME}/.pythonstartup
 
+# Tmux plugin manager install [ https://github.com/tmux-plugins/tpm ]
+sudo rm -rf ~/.tmux/plugins/*
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Set prmissions for the files
 chmod +x ${HOME}/.zshrc
 chmod +x ${HOME}/.p10k.zsh
 chmod +x ${HOME}/.pythonstartup
+chmod +x ${HOME}/.tmux.conf
+
+tmux source ~/.tmux.conf
 
 echo "Setup Completed"
