@@ -9,6 +9,9 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   brew install neofetch
   # for printing banner style output in command line alternative [ banner <text> ] 
   brew install figlet
+  # Golang linter and security checker
+  brew install golangci-lint
+  brew upgrade golangci-lint
 else
   ####### For now only tested with Ubuntu >= 16.04 and ubutnu in wsl2 #####
   # install python pip
@@ -42,6 +45,10 @@ else
   # configure python cli argument completion
   python3 -m pip install argcomplete
   activate-global-python-argcomplete
+  # Golang linter and security checker
+  # binary will be $(go env GOPATH)/bin/golangci-lint
+  curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.43.0
+  golangci-lint --version
 fi
 
 # Install ZSH specific tools, themes and plugins
