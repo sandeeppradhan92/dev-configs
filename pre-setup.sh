@@ -78,6 +78,9 @@ cp .p10k.zsh ${HOME}/.p10k.zsh
 # configure python startup file/process. Only executes before python REPL
 cp .pythonstartup ${HOME}/.pythonstartup
 
+# Configure vim for development
+cp .vimrc ${HOME}/.vimrc
+
 # Tmux plugin manager install [ https://github.com/tmux-plugins/tpm ]
 sudo rm -rf ~/.tmux/plugins/*
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
