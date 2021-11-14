@@ -219,6 +219,8 @@ fi
 # setup for istioctl
 if·[·-d·$HOME/.istioctl/bin·];·then·export·PATH=$PATH:$HOME/.istioctl/bin;·»
 
+# setup path for go binaries
+export·PATH=$PATH:HOME/go/bin/
 
 ##########################################################################################################################################
 
