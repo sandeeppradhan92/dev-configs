@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Filename   : .vimrc                                                        "
-" Maintainer : Sandeep Pradhan                                               "
-" URL        : https://github.com/sandeeppradhan92/dev-configs               "
+"   Filename: .vimrc                                                         "
+" Maintainer: Sandeep Pradhan                                                "
+""        URL:                                                               "
 "                                                                            "
 "                                                                            "
 "                                                                            "
@@ -13,24 +13,22 @@
 "   05. Text Formatting/Layout .. Text, tab, indentation related             "
 "   06. Language Support ........ Any custom command aliases                 "
 "   07. Plugin specific config                                               "
-"                                                                            "
-"                                                                            "
-"                                                                            "
-" Brief help for vim internal command                                        "
-" :PlugInstall                  - installs plugins; append `!` to update     "
-" :PluginUpdate                 - Update the installed plugins only          "
-" :PlugSearch foo               - searches for foo;                          "
-"                                 append `!` to refresh local cache          "
-" :PlugClean                    - confirms removal of unused plugins;        "
-"                                 append `!` to auto-approve removal         "
-" :CocInstall coc-rust-analyzer - To install auto completion plugin for rust "
-" see :h vundle for more details or wiki for FAQ                             "
-"                                                                            "
-"                                                                            "
-"                                                                            "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"
+" Brief help
+" :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PlugSearch foo - searches for foo; append `!` to refresh local cache
+" :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""i
 
-" Install Plugin Manager
+
+" plugins
 let need_to_install_plugins = 0
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -55,7 +53,7 @@ let g:is_mouse_enabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 02. Events                                                                 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Initiate pathogen before enabling filetype detection
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
@@ -69,13 +67,15 @@ Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim'                          " Rust syntax highlight
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go lang support
-Plug 'maralla/completor.vim'                       " Go autocompletion using gopls
+" Plug 'maralla/completor.vim'                       " Go autocompletion using gopls
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'                     " Vim status bar (Bottom)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Language server client
+Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 
 " In Makefiles DO NOT use spaces instead of tabs
@@ -92,17 +92,21 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 03. Theme/Colors                                                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSOR SETUP
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=5\x7"
+let &t_EI = "\<Esc>]50;CursorShape=6\x7"
+
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-"colorscheme Tomorrow-Night-Eighties       " set colorscheme
-"colorscheme Tomorrow                      " set colorscheme
+colorscheme iceberg       " set colorscheme
 
 
 " Prettify Markdown files
-augroup markdown
-   au!
-  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
+"augroup markdown
+"   au!
+"  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+"augroup END
 
 " Highlight characters that go over 80 columns (by drawing a border on the 81st)
 if exists('+colorcolumn')
@@ -172,18 +176,14 @@ set undodir=~/.vim/undodir
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
 
-"################################# Rust Setup ################################
+"""""""""""""""""""""""""""""""Rust Setup""""""""""""""""""""""""""""""""""""
 " https://github.com/rust-lang/rust.vim
 let g:rustfmt_autosave=1
 
-"################################ Go lang Setup ##############################
+""""""""""""""""""""""""""""""Go lang Setup"""""""""""""""""""""""""""""""""""
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-" go-vim plugin specific commands
-" Also run `goimports` on your current file on every save
-" Might be be slow on large codebases, if so, just comment it out
-let g:go_fmt_command = "goimports"
 
 " Status line types/signatures.
 let g:go_auto_type_info = 1
@@ -191,10 +191,25 @@ let g:go_auto_type_info = 1
 " Use new vim 7.2 popup windows for Go Doc
 let g:go_doc_popup_window = 0
 " Enable lsp for go by using gopls
-let g:completor_filetype_map = {}
-let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
+" let g:completor_filetype_map = {}
+" let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}
 
-"################################ Python Setup ################################
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
+
+" Go Add Tags
+let g:go_addtags_transform = 'camelcase'
+noremap gat :GoAddTags<cr>
+
+"""""""""""""""""""""""""""""Python Setup"""""""""""""""""""""""""""""""""""""
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 
