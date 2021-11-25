@@ -14,6 +14,8 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   brew upgrade golangci-lint
   # install ubuntu like tree command
   brew install tree
+  # install watch command in Mac . Use case [ watch {command} ]
+  brew install watch
 else
   ####### For now only tested with Ubuntu >= 16.04 and ubutnu in wsl2 #####
   # install python pip
