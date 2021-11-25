@@ -12,6 +12,8 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   # Golang linter and security checker
   brew install golangci-lint
   brew upgrade golangci-lint
+  # install ubuntu like tree command
+  brew install tree
 else
   ####### For now only tested with Ubuntu >= 16.04 and ubutnu in wsl2 #####
   # install python pip
