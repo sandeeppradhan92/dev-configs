@@ -126,6 +126,7 @@ set scrolloff=5           " minimal number of lines before and after cursor
 set number                " show line numbers
 set numberwidth=2         " make the number gutter 6 characters wide
 set cul                   " highlight current line
+set cursorline            " show a visual line under the cursor's current line
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
@@ -134,9 +135,8 @@ set showmatch
 set visualbell
 set backspace=2           " backspace over everything in insert mode
 set encoding=UTF-8
-set background=dark
+set updatetime=100        " Update Bottom status line evry 100ms [Default 800ms]
 let g:airline#extensions#tabline#enabled = 1 " Vim-airline smarter tab line
-
 
 " Make search results appear on the middle of the screen
 nnoremap n nzz
@@ -187,6 +187,7 @@ let g:rustfmt_autosave=1
 
 """"""""""""""""""""""""""""""Go lang Setup"""""""""""""""""""""""""""""""""""
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
@@ -200,6 +201,7 @@ let g:go_doc_popup_window = 0
 " let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}
 
 " Go syntax highlighting
+let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
@@ -214,9 +216,15 @@ let g:go_fmt_command = "goimports"
 let g:go_addtags_transform = 'camelcase'
 noremap gat :GoAddTags<cr>
 
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
+
+
 """""""""""""""""""""""""""""Python Setup"""""""""""""""""""""""""""""""""""""
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-
+let python_highlight_all = 1  " enable all Python syntax highlighting features
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -258,7 +266,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " To enable the close button in the upper right corner of tab/buffer
-let g:tablineclosebutton=1
 hi TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
 hi TabLineFill  ctermfg=White  ctermbg=Black     cterm=NONE
 hi TabLineSel   ctermfg=Black  ctermbg=White     cterm=NONE
+let g:tablineclosebutton=1
