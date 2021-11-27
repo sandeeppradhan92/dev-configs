@@ -72,6 +72,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'                     " Vim status bar (Bottom)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Language server client
 Plug 'cocopon/iceberg.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mkitt/tabline.vim'
 call plug#end()
 
 
@@ -131,7 +133,10 @@ set ruler                 " Always show info along bottom.
 set showmatch
 set visualbell
 set backspace=2           " backspace over everything in insert mode
+set encoding=UTF-8
+set background=dark
 let g:airline#extensions#tabline#enabled = 1 " Vim-airline smarter tab line
+
 
 " Make search results appear on the middle of the screen
 nnoremap n nzz
@@ -251,3 +256,9 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" To enable the close button in the upper right corner of tab/buffer
+let g:tablineclosebutton=1
+hi TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
+hi TabLineFill  ctermfg=White  ctermbg=Black     cterm=NONE
+hi TabLineSel   ctermfg=Black  ctermbg=White     cterm=NONE
