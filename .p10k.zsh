@@ -36,8 +36,8 @@
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
-    newline                 # \n
-    prompt_char             # prompt symbol
+    # newline                 # \n
+    # prompt_char             # prompt symbol
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -82,7 +82,7 @@
       # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
       # vpn_ip                # virtual private network indicator
       # disk_usage              # fill percentage HD
-      ram                     # free RAM
+      # ram                     # free RAM
       # load                    # CPU load
       # todo                  # todo items (https://github.com/todotxt/todo.txt-cli)
       time                    # current time
