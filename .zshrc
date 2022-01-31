@@ -1,3 +1,4 @@
+command neofetch
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -42,7 +43,7 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=197'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=197'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=197'
 
-# commands like echo git npm 
+# commands like echo git npm
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=119'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=119'
 ZSH_HIGHLIGHT_STYLES[global-alias]='fg=119'
@@ -167,7 +168,6 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
-
 # For bash completion
 autoload bashcompinit
 bashcompinit
@@ -197,18 +197,22 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     export CLICOLOR=1
     export LSCOLORS=GxFxCxDxBxegedabagaced
 
+    # Command to kill microsoft defender
+    alias kill_md="launchctl unload /Library/LaunchAgents/com.microsoft.wdav.tray.plist"
+
     alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
     # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sandeeppradhan/google-cloud-sdk/path.zsh.inc'; fi
 
     # The next line enables shell command completion for gcloud.
     if [ -f '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sandeeppradhan/google-cloud-sdk/completion.zsh.inc'; fi
-    
+
     # Set path for google cloud sdk
-    if [ -f '/Users/sandeeppradhan/google-cloud-sdk/bin' ]; then export PATH=$PATH:/Users/sandeeppradhan/google-cloud-sdk/bin; fi
+    if [ -d '/Users/sandeeppradhan/google-cloud-sdk/bin' ]; then export PATH=/Users/sandeeppradhan/google-cloud-sdk/bin:$PATH; fi
     if [ -d /Users/sandeeppradhan/Library/Application\ Support/cloud-code/installer/google-cloud-sdk/bin ]; then export PATH=$PATH:'/Users/sandeeppradhan/Library/Application Support/cloud-code/installer/google-cloud-sdk/bin'; fi
-    
+
     if [ -f /usr/local/etc/bash_completion ]; then /bin/bash /usr/local/etc/bash_completion; fi
+    source ~/.minikube-completion
 else
     LS_COLORS='ow=01;36;40'
     export LS_COLORS
@@ -216,11 +220,11 @@ else
   eval "$(~/.local/bin/register-python-argcomplete airflow)"
 fi
 
-# setup for istioctl
-if·[·-d·$HOME/.istioctl/bin·];·then·export·PATH=$PATH:$HOME/.istioctl/bin;·»
+# setup istioctl path
+if [ -d $HOME/.istioctl/bin ]; then export PATH=$PATH:$HOME/.istioctl/bin; fi
 
-# setup path for go binaries
-export·PATH=$PATH:HOME/go/bin/
+# setup PATH for go binaries
+export PATH=$PATH:$HOME/go/bin/
 
 ##########################################################################################################################################
 
@@ -230,16 +234,33 @@ export PYTHONSTARTUP=${HOME}/.pythonstartup
 
 
 ##########################################################################################################################################
-################################################################ Aliases #################################################################
+### Aliases
 ##########################################################################################################################################
 
 alias ll='ls -laF'
 alias lll='ls -lartF'
-alias weather='function _wtr(){curl wttr.in/$1 };_wtr'
+alias weather='function _wtr(){curl wttr.in/$1 };_wt'r
 alias back='cd $OLDPWD'
 alias figlet3='figlet -f banner3 -c -w $(tput cols)'
 
+minikube() {
+  case $1 in
+    on)
+      shift
+       command minikube start --extra-config=apiserver.service-account-signing-key-file=/var/lib/minikube/certs/sa.key \
+          --extra-config=apiserver.service-account-key-file=/var/lib/minikube/certs/sa.pub \
+          --extra-config=apiserver.service-account-issuer=kubernetes/serviceaccount --driver=hyperkit --kubernetes-version=v1.22.2
+      ;;
+    off)
+      shift
+      command minikube stop
+      ;;
+    *)
+      command minikube "$@";;
+  esac
+}
+
 ##########################################################################################################################################
-
-
 echo 'Plugin load complete'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
