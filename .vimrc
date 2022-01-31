@@ -1,3 +1,4 @@
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Filename: .vimrc                                                         "
 " Maintainer: Sandeep Pradhan                                                "
@@ -56,8 +57,8 @@ let g:is_mouse_enabled = 1
 " Initiate pathogen before enabling filetype detection
 
 call plug#begin()
+Plug 'kevinoid/vim-jsonc'                          " Vim syntax highlighting plugin for JSON with C-style line (//) and block (/* */) comments.
 Plug 'tpope/vim-sensible'
-Plug 'ap/vim-buftabline'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/The-NERD-tree'
 Plug 'scrooloose/syntastic'
@@ -67,13 +68,14 @@ Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim'                          " Rust syntax highlight
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go lang support
-" Plug 'maralla/completor.vim'                       " Go autocompletion using gopls
+Plug 'ctrlpvim/ctrlp.vim'                          " Jump between functions using ]]
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'                     " Vim status bar (Bottom)
+Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Language server client
 Plug 'cocopon/iceberg.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'mkitt/tabline.vim'
+Plug 'mkitt/tabline.vim'                           " Use it for buffer tab customizqation
 call plug#end()
 
 
@@ -136,6 +138,8 @@ set visualbell
 set backspace=2           " backspace over everything in insert mode
 set encoding=UTF-8
 set updatetime=100        " Update Bottom status line evry 100ms [Default 800ms]
+set autowrite             " writes the content of the file automatically 
+                          " https://github.com/fatih/vim-go/wiki/Tutorial#quick-setup
 let g:airline#extensions#tabline#enabled = 1 " Vim-airline smarter tab line
 
 " Make search results appear on the middle of the screen
@@ -188,6 +192,14 @@ let g:rustfmt_autosave=1
 """"""""""""""""""""""""""""""Go lang Setup"""""""""""""""""""""""""""""""""""
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+" use these shortcuts to build and run a Go program with <leader>b and <leader>r
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+" The ftplugin/go.vim file sets the custom completion of the vim-go plugin
+setlocal omnifunc=go#complete#Complete
+
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
@@ -195,10 +207,10 @@ let g:go_info_mode='gopls'
 let g:go_auto_type_info = 1
 
 " Use new vim 7.2 popup windows for Go Doc
-let g:go_doc_popup_window = 0
+let g:go_doc_popup_window = 1
 " Enable lsp for go by using gopls
-" let g:completor_filetype_map = {}
-" let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}
+let g:completor_filetype_map = {}
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}
 
 " Go syntax highlighting
 let g:go_highlight_types = 1
@@ -207,6 +219,8 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_build_constraints = 1
 
 " Auto formatting and importing
 let g:go_fmt_autosave = 1
@@ -221,10 +235,18 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
+" automatically show the information whenever you move your cursor.
+let g:go_auto_type_info = 1
+" automatically highlight matching identifiers.
+let g:go_auto_sameids = 1
+let g:go_def_mode = 'godef'
+let g:go_decls_includes = "func,type"
+
 
 """""""""""""""""""""""""""""Python Setup"""""""""""""""""""""""""""""""""""""
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-let python_highlight_all = 1  " enable all Python syntax highlighting features
+" enable python-syntax module
+let python_highlight_all = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -268,5 +290,11 @@ let g:airline_symbols.linenr = ''
 " To enable the close button in the upper right corner of tab/buffer
 hi TabLine      ctermfg=White  ctermbg=Black     cterm=NONE
 hi TabLineFill  ctermfg=White  ctermbg=Black     cterm=NONE
-hi TabLineSel   ctermfg=Black  ctermbg=White     cterm=NONE
-let g:tablineclosebutton=1
+hi TabLineSel   ctermfg=Black  ctermbg=Green     cterm=NONE
+ "let g:tablineclosebutton=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+
