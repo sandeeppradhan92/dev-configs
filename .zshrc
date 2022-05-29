@@ -242,6 +242,15 @@ alias lll='ls -lartF'
 alias weather='function _wtr(){curl wttr.in/$1 };_wt'r
 alias back='cd $OLDPWD'
 alias figlet3='figlet -f banner3 -c -w $(tput cols)'
+# Only required if python 3.10 is installed
+# alias python310='/usr/local/opt/python@3.10/bin/python3.10'
+
+# To use with different version of go installation using installation package from official site
+alias go1.8="/usr/local/go/bin/go"
+# To use sublime text command
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+
 
 minikube() {
   case $1 in
@@ -249,7 +258,9 @@ minikube() {
       shift
        command minikube start --extra-config=apiserver.service-account-signing-key-file=/var/lib/minikube/certs/sa.key \
           --extra-config=apiserver.service-account-key-file=/var/lib/minikube/certs/sa.pub \
-          --extra-config=apiserver.service-account-issuer=kubernetes/serviceaccount --driver=hyperkit --kubernetes-version=v1.22.2
+          --extra-config=apiserver.service-account-issuer=kubernetes/serviceaccount \
+          --network-plugin=cni --cni=calico \
+          --driver=hyperkit --kubernetes-version=v1.22.2
       ;;
     off)
       shift
@@ -264,3 +275,5 @@ minikube() {
 echo 'Plugin load complete'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
