@@ -2,38 +2,10 @@ command neofetch
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(starship init zsh)"
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-if [ -f "${ZSH}/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-  source ${ZSH}/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-elif [ -f "${ZSH}/themes/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-  source ${ZSH}/themes/powerlevel10k/powerlevel10k.zsh-theme
-elif [ -f "${HOME}/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-  source ${HOME}/powerlevel10k/powerlevel10k.zsh-theme
-else
-  echo "powerlevel10k folder not found"
-fi
-
+#
 # Declare the variable
 typeset -A ZSH_HIGHLIGHT_STYLES
 
@@ -51,58 +23,6 @@ ZSH_HIGHLIGHT_STYLES[command]='fg=119'
 
 ZSH_HIGHLIGHT_STYLES[default]='fg=255'
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -110,44 +30,21 @@ ZSH_HIGHLIGHT_STYLES[default]='fg=255'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    docker
     dotenv
     git
-    git-flow
     golang
     history
-    node
-    npm
-    pip
-    pipenv
-    python
     themes
     tmux
-    vscode
     kubectl
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-completions
 )
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -156,17 +53,12 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshconfig="source ~/.zshrc"
-alias ohmyzsh="source ~/.oh-my-zsh"
 
 if [ -f "${HOME}/.bash_aliases" ]; then
   source ${HOME}/.bash_aliases
 fi
 
 
-# Configuration for kubernetes completion
-source <(kubectl completion zsh)
-alias k=kubectl
-complete -F __start_kubectl k
 
 # For bash completion
 autoload bashcompinit
@@ -225,12 +117,23 @@ if [ -d $HOME/.istioctl/bin ]; then export PATH=$PATH:$HOME/.istioctl/bin; fi
 
 # setup PATH for go binaries
 export PATH=$PATH:$HOME/go/bin/
-
+export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin/
 ##########################################################################################################################################
 
 
 # For python startup file
 export PYTHONSTARTUP=${HOME}/.pythonstartup
+
+
+##########################################################################################################################################
+### Vim and nvim specific configs and env vars
+##########################################################################################################################################
+
+# chnages in nvim or vim fzf search default command
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 
 
 ##########################################################################################################################################
@@ -242,15 +145,10 @@ alias lll='ls -lartF'
 alias weather='function _wtr(){curl wttr.in/$1 };_wt'r
 alias back='cd $OLDPWD'
 alias figlet3='figlet -f banner3 -c -w $(tput cols)'
-# Only required if python 3.10 is installed
-# alias python310='/usr/local/opt/python@3.10/bin/python3.10'
-
-# To use with different version of go installation using installation package from official site
-alias go1.8="/usr/local/go/bin/go"
-# To use sublime text command
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-
-
+alias python38='/usr/local/opt/python@3.8/bin/python3.8'
+alias python39='/usr/local/opt/python@3.9/bin/python3.9'
+alias python310='/usr/local/opt/python@3.10/bin/python3.10'
+alias python311='/usr/local/opt/python@3.11/bin/python3.11'
 
 minikube() {
   case $1 in
@@ -276,4 +174,13 @@ echo 'Plugin load complete'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
 
+
+#######Star Ship
+source /usr/local/opt/nvm/nvm.sh
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/Users/sandeeppradhan/.local/bin:$PATH"
