@@ -9,9 +9,6 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   brew install neofetch
   # for printing banner style output in command line alternative [ banner <text> ] 
   brew install figlet
-  # Golang linter and security checker
-  brew install golangci-lint
-  brew upgrade golangci-lint
   # install ubuntu like tree command
   brew install tree
   # install watch command in Mac . Use case [ watch {command} ]
@@ -49,22 +46,19 @@ else
   # configure python cli argument completion
   python3 -m pip install argcomplete
   activate-global-python-argcomplete
-  # Golang linter and security checker
-  # binary will be $(go env GOPATH)/bin/golangci-lint
-  curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.43.0
-  golangci-lint --version
+  
 fi
 
 # Install ZSH specific tools, themes and plugins
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
-rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 rm -rf ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+# Install starship prompt
+curl -sS https://starship.rs/install.sh | sh
 
 # tmux plugin installation
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -77,7 +71,6 @@ python3 -m pip install ptpython
 
 # configure zsh console
 cp .zshrc ${HOME}/.zshrc
-cp .p10k.zsh ${HOME}/.p10k.zsh
 
 # configure python startup file/process. Only executes before python REPL
 cp .pythonstartup ${HOME}/.pythonstartup
@@ -91,7 +84,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Set prmissions for the files
 chmod +x ${HOME}/.zshrc
-chmod +x ${HOME}/.p10k.zsh
 chmod +x ${HOME}/.pythonstartup
 chmod +x ${HOME}/.tmux.conf
 
